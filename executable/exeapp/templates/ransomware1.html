@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;  
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: black; /* Change background color to black */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: red; /* Change text color to red */
+  }
+
+  .heading {
+    font-size: 2rem;
+    font-weight: bold;
+    color: red; /* Keep the heading color as red */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(224, 206, 206); /* Change container color to gray */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .timer {
+    font-size: 2rem;
+    font-weight: bold;
+    color: red; /* Keep the timer color as red */
+    margin-bottom: 10px;
+  }
+
+  .warning {
+    font-size: 1.5rem;
+    color: red; /* Keep the warning color as red */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .stats {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .transfer-container {
+    padding: 20px;
+    background-color: gray; /* Change transfer container color to gray */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .transfer-instructions {
+    font-size: 1.2rem;
+    color: red; /* Keep the transfer instructions color as red */
+    margin-bottom: 10px;
+  }
+
+  .bitcoin-address {
+    font-size: 1.2rem;
+  }
+
+  .password-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+</style>
+
+</head>
+<body>
+  <div class="heading">
+    LAZURUS MISSIONS
+  </div>
+
+  <div class="container">
+    <div class="timer" id="timer">00:00:10</div>
+    <div class="warning">Your system is under attack.</div>
+   
+  </div>
+
+  <div class="container">
+    <div class="transfer-container">
+      <div class="transfer-instructions">
+        Transfer Bitcoin to the following address:
+      </div>
+      <div class="bitcoin-address">
+        <code>1Ab2c3d4Ef5Gh6iJ</code>
+      </div>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+  </div>
+
+  <script>
+    let timer = 10; // seconds
+    const timerElement = document.getElementById('timer');
+
+    const updateTimer = () => {
+      const hours = Math.floor(timer / 3600);
+      const minutes = Math.floor((timer % 3600) / 60);
+      const seconds = timer % 60;
+
+      const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      timerElement.textContent = formattedTime;
+
+      if (timer === 0) {
+        clearInterval(interval);
+        // Perform any action you want here when the timer reaches 0
+      }
+      timer--;
+    };
+
+    const interval = setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
