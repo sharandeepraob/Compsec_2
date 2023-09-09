@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-nzknde#&gcndtqgu(#o2(-yo3ratmvgdtz081)$!)stjq6#f!i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['compsec-f9dc69b10b03.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -43,7 +43,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -82,7 +81,7 @@ DATABASES = {
         'NAME': 'executable',
         'USER': 'lazarus',
         'PASSWORD': 'lazarus',
-        'HOST': '47.186.210.14',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -122,7 +121,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
